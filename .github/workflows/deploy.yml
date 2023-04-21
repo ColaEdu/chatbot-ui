@@ -42,3 +42,14 @@ jobs:
           cd chatbot-ui
           /home/fangge/.nvm/versions/node/v17.9.1/bin/npm ci
           /home/fangge/.nvm/versions/node/v17.9.1/bin/pm2 start /home/fangge/.nvm/versions/node/v17.9.1/bin/npm --name "chatbot-ui" -- start
+    - name: Install dependencies and start the application on the remote server
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.REMOTE_HOST }}
+        username: ${{ secrets.REMOTE_USER }}
+        key: ${{ secrets.REMOTE_SSH_KEY }}
+        script: |
+          export PATH="/home/fangge/.nvm/versions/node/v17.9.1/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"
+          cd chatbot-ui
+          npm ci
+          pm2 start npm --name "chatbot-ui" -- start
