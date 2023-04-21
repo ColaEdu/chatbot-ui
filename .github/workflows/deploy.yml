@@ -51,6 +51,7 @@ jobs:
         script: |
           source ~/.bashrc_for_github_actions
           cd chatbot-ui
-          npm ci
-          pm2 start npm --name "chatbot-ui" -- start
+          /bin/bash --login -c "npm ci"
+          /bin/bash --login -c "pm2 start npm --name 'chatbot-ui' -- start"
+
 
