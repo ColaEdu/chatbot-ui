@@ -32,7 +32,6 @@ jobs:
         key: ${{ secrets.REMOTE_SSH_KEY }}
         source: "."
         target: "chatbot-ui"
-
     - name: Install dependencies and start the application on the remote server
       uses: appleboy/ssh-action@master
       with:
@@ -41,5 +40,5 @@ jobs:
         key: ${{ secrets.REMOTE_SSH_KEY }}
         script: |
           cd chatbot-ui
-          npm ci
-          pm2 start npm --name "chatbot-ui" -- start
+          /home/fangge/.nvm/versions/node/v17.9.1/bin/npm ci
+          /home/fangge/.nvm/versions/node/v17.9.1/bin/pm2 start /home/fangge/.nvm/versions/node/v17.9.1/bin/npm --name "chatbot-ui" -- start
