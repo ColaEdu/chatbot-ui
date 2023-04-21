@@ -38,8 +38,10 @@ jobs:
         host: ${{ secrets.REMOTE_HOST }}
         username: ${{ secrets.REMOTE_USER }}
         key: ${{ secrets.REMOTE_SSH_KEY }}
+        envs: OPENAI_API_KEY
         script: |
           source ~/.bashrc_for_github_actions
           cd chatbot-ui
           /bin/bash --login -c "npm ci"
+          echo "export OPENAI_API_KEY=${OPENAI_API_KEY}" >> ~/.bashrc
           /bin/bash --login -c "pm2 restart 'chatbot-ui' || pm2 start npm --name 'chatbot-ui' -- start"
