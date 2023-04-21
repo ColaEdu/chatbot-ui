@@ -39,16 +39,6 @@ jobs:
         username: ${{ secrets.REMOTE_USER }}
         key: ${{ secrets.REMOTE_SSH_KEY }}
         script: |
-          cd chatbot-ui
-          /home/fangge/.nvm/versions/node/v17.9.1/bin/npm ci
-          /home/fangge/.nvm/versions/node/v17.9.1/bin/pm2 start /home/fangge/.nvm/versions/node/v17.9.1/bin/npm --name "chatbot-ui" -- start
-    - name: Install dependencies and start the application on the remote server
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.REMOTE_HOST }}
-        username: ${{ secrets.REMOTE_USER }}
-        key: ${{ secrets.REMOTE_SSH_KEY }}
-        script: |
           source ~/.bashrc_for_github_actions
           cd chatbot-ui
           /bin/bash --login -c "npm ci"
